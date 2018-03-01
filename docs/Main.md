@@ -1,0 +1,2 @@
++card([])
++multi_card({})
