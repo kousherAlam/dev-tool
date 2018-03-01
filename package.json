@@ -1,0 +1,25 @@
+{
+  "name": "speeduptools",
+  "version": "1.0.0",
+  "description": "* development workflow\r         - Css compailation ( PostCSS > SASS > Support pulgins )\r         - HTML Compailation > PUG\r         - Javascript ( ES6 > TS > Babel )\r         - BrowserSyc\r     * Production ( /dist )\r         - minification\r         - Assets Optimization ( font / svg / images )\r         - Easy publish with ( surge / githubpages)\r     * Docs \r       - css ( classes and mixins & extends )\r       - Pug (layout, mixin and includes )\r       - all controlls",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "webpack --mode=development --hot --inline",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kousherAlam@bitbucket.org/kousherAlam/speeduptools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kousherAlam/speeduptools#readme",
+  "devDependencies": {
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9"
+  }
+}

@@ -1,0 +1,32 @@
+extends ../_layout/_fixedtophead_layout.pug
+block variables
+    -var fb_url = 'https://facebook.com/kousher'
+    -var twitter_url = 'https://facebook.com/kousher'
+    -var gplus = 'https://facebook.com/kousher'
+block head_content
+    +makeHead('title')
+    +addMeta('key','content')
+    +addStyle('css/','main.css','bs.css')
+block body_content
+
+    includes ../_partial/_header.pug
+
+    #main_content
+        #slider.hero-section
+            h1.title the hero section
+            btnprimary('Click to see More')
+        #featured.featured-area
+            .row.first-row
+                +card('title','description')
+                +card('title','description')
+                +card('title','description')
+            .row.secound-row
+                +card('title','description')
+                +card('title','description')
+                +card('title','description')
+        #pricing-area.pricing
+                +pricingTable('title','$400',null,['description','description','description'])
+                +pricingTable('title','$400','badge',['description','description','description'])
+                +pricingTable('title','$400',null,['description','description','description'])
+
+    includes ../_partial/_footer.pug

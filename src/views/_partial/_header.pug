@@ -1,0 +1,13 @@
+div#main-header
+    .main_logo
+        +brandLogo('link','path','title')
+    nav.main_menu
+        +dropdown('title',['title','link'],['title','link'],['title','link'])
+        +link('title','link')
+    .socila_menu
+        a(href=#{fb_url})
+            fa('facebook')
+        a(href=#{twitter_url})
+            fa('twitter')
+        a(href=#{gplus})
+            fa('googleplus')
