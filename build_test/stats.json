@@ -1,0 +1,369 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.0.1",
+  "hash": "7b3d71eb0619c5772f05",
+  "time": 125,
+  "builtAt": 1519937777393,
+  "publicPath": "",
+  "outputPath": "C:\\Users\\koush\\Desktop\\build\\dist\\js",
+  "assetsByChunkName": {
+    "null": "app.bundle.js"
+  },
+  "assets": [
+    {
+      "name": "app.bundle.js",
+      "size": 4888,
+      "chunks": [
+        "null"
+      ],
+      "chunkNames": [
+        "null"
+      ],
+      "emitted": true
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "null": {
+      "chunks": [
+        "null"
+      ],
+      "assets": [
+        "app.bundle.js"
+      ]
+    }
+  },
+  "chunks": [
+    {
+      "id": "null",
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "size": 584,
+      "names": [
+        "null"
+      ],
+      "files": [
+        "app.bundle.js"
+      ],
+      "hash": "0f67deab752467330815",
+      "siblings": [],
+      "parents": [],
+      "children": [],
+      "modules": [
+        {
+          "id": "./src/js/app.js",
+          "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "name": "./src/js/app.js",
+          "index": 0,
+          "index2": 2,
+          "size": 336,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "null"
+          ],
+          "assets": [],
+          "issuer": null,
+          "issuerId": null,
+          "issuerName": null,
+          "issuerPath": null,
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": null,
+              "moduleIdentifier": null,
+              "module": null,
+              "moduleName": null,
+              "type": "single entry",
+              "userRequest": "./src/js/app.js",
+              "loc": "null"
+            }
+          ],
+          "providedExports": [],
+          "optimizationBailout": [],
+          "depth": 0,
+          "source": "import _ from './module/select.js';\r\nimport { Person } from './module/Person.js';\r\n\r\nlet name = 'kousher alam';\r\nconsole.log(`Hi my name is ${name}`);\r\n\r\nlet body = _('body');\r\nconsole.log(body);\r\nlet kousher = new Person;\r\nfor(var i=0; i<100; i++){\r\n    console.log( kousher.sayName());\r\n}\r\n\r\nconsole.log('ok it done nicely.....');\r\n\r\n"
+        },
+        {
+          "id": "./src/js/module/Person.js",
+          "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\module\\Person.js",
+          "name": "./src/js/module/Person.js",
+          "index": 2,
+          "index2": 1,
+          "size": 176,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "null"
+          ],
+          "assets": [],
+          "issuer": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "issuerId": "./src/js/app.js",
+          "issuerName": "./src/js/app.js",
+          "issuerPath": [
+            {
+              "id": "./src/js/app.js",
+              "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "name": "./src/js/app.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": "./src/js/app.js",
+              "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "module": "./src/js/app.js",
+              "moduleName": "./src/js/app.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./module/Person.js",
+              "loc": "2:0-44"
+            },
+            {
+              "moduleId": "./src/js/app.js",
+              "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "module": "./src/js/app.js",
+              "moduleName": "./src/js/app.js",
+              "type": "harmony import specifier",
+              "userRequest": "./module/Person.js",
+              "loc": "9:18-24"
+            }
+          ],
+          "providedExports": [
+            "Person"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export class Person{\r\n    constructor(){\r\n        console.log(\"i'm form construct\");\r\n    }\r\n    sayName(){\r\n        console.log(`Hi my name is kousher alam pranto`);\r\n    }\r\n}"
+        },
+        {
+          "id": "./src/js/module/select.js",
+          "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\module\\select.js",
+          "name": "./src/js/module/select.js",
+          "index": 1,
+          "index2": 0,
+          "size": 72,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            "null"
+          ],
+          "assets": [],
+          "issuer": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "issuerId": "./src/js/app.js",
+          "issuerName": "./src/js/app.js",
+          "issuerPath": [
+            {
+              "id": "./src/js/app.js",
+              "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "name": "./src/js/app.js"
+            }
+          ],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": "./src/js/app.js",
+              "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "module": "./src/js/app.js",
+              "moduleName": "./src/js/app.js",
+              "type": "harmony side effect evaluation",
+              "userRequest": "./module/select.js",
+              "loc": "1:0-35"
+            },
+            {
+              "moduleId": "./src/js/app.js",
+              "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+              "module": "./src/js/app.js",
+              "moduleName": "./src/js/app.js",
+              "type": "harmony import specifier",
+              "userRequest": "./module/select.js",
+              "loc": "7:11-12"
+            }
+          ],
+          "providedExports": [
+            "default"
+          ],
+          "optimizationBailout": [],
+          "depth": 1,
+          "source": "export default function(id){\r\n    return document.getElementById(id);\r\n}"
+        }
+      ],
+      "filteredModules": 0,
+      "origins": [
+        {
+          "module": "",
+          "moduleIdentifier": "",
+          "moduleName": "",
+          "loc": "null",
+          "request": "./src/js/app.js",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "./src/js/app.js",
+      "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+      "name": "./src/js/app.js",
+      "index": 0,
+      "index2": 2,
+      "size": 336,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "null"
+      ],
+      "assets": [],
+      "issuer": null,
+      "issuerId": null,
+      "issuerName": null,
+      "issuerPath": null,
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": null,
+          "moduleIdentifier": null,
+          "module": null,
+          "moduleName": null,
+          "type": "single entry",
+          "userRequest": "./src/js/app.js",
+          "loc": "null"
+        }
+      ],
+      "providedExports": [],
+      "optimizationBailout": [],
+      "depth": 0,
+      "source": "import _ from './module/select.js';\r\nimport { Person } from './module/Person.js';\r\n\r\nlet name = 'kousher alam';\r\nconsole.log(`Hi my name is ${name}`);\r\n\r\nlet body = _('body');\r\nconsole.log(body);\r\nlet kousher = new Person;\r\nfor(var i=0; i<100; i++){\r\n    console.log( kousher.sayName());\r\n}\r\n\r\nconsole.log('ok it done nicely.....');\r\n\r\n"
+    },
+    {
+      "id": "./src/js/module/Person.js",
+      "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\module\\Person.js",
+      "name": "./src/js/module/Person.js",
+      "index": 2,
+      "index2": 1,
+      "size": 176,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "null"
+      ],
+      "assets": [],
+      "issuer": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+      "issuerId": "./src/js/app.js",
+      "issuerName": "./src/js/app.js",
+      "issuerPath": [
+        {
+          "id": "./src/js/app.js",
+          "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "name": "./src/js/app.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": "./src/js/app.js",
+          "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "module": "./src/js/app.js",
+          "moduleName": "./src/js/app.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./module/Person.js",
+          "loc": "2:0-44"
+        },
+        {
+          "moduleId": "./src/js/app.js",
+          "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "module": "./src/js/app.js",
+          "moduleName": "./src/js/app.js",
+          "type": "harmony import specifier",
+          "userRequest": "./module/Person.js",
+          "loc": "9:18-24"
+        }
+      ],
+      "providedExports": [
+        "Person"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "export class Person{\r\n    constructor(){\r\n        console.log(\"i'm form construct\");\r\n    }\r\n    sayName(){\r\n        console.log(`Hi my name is kousher alam pranto`);\r\n    }\r\n}"
+    },
+    {
+      "id": "./src/js/module/select.js",
+      "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\module\\select.js",
+      "name": "./src/js/module/select.js",
+      "index": 1,
+      "index2": 0,
+      "size": 72,
+      "cacheable": true,
+      "built": true,
+      "optional": false,
+      "prefetched": false,
+      "chunks": [
+        "null"
+      ],
+      "assets": [],
+      "issuer": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+      "issuerId": "./src/js/app.js",
+      "issuerName": "./src/js/app.js",
+      "issuerPath": [
+        {
+          "id": "./src/js/app.js",
+          "identifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "name": "./src/js/app.js"
+        }
+      ],
+      "failed": false,
+      "errors": 0,
+      "warnings": 0,
+      "reasons": [
+        {
+          "moduleId": "./src/js/app.js",
+          "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "module": "./src/js/app.js",
+          "moduleName": "./src/js/app.js",
+          "type": "harmony side effect evaluation",
+          "userRequest": "./module/select.js",
+          "loc": "1:0-35"
+        },
+        {
+          "moduleId": "./src/js/app.js",
+          "moduleIdentifier": "C:\\Users\\koush\\Desktop\\build\\src\\js\\app.js",
+          "module": "./src/js/app.js",
+          "moduleName": "./src/js/app.js",
+          "type": "harmony import specifier",
+          "userRequest": "./module/select.js",
+          "loc": "7:11-12"
+        }
+      ],
+      "providedExports": [
+        "default"
+      ],
+      "optimizationBailout": [],
+      "depth": 1,
+      "source": "export default function(id){\r\n    return document.getElementById(id);\r\n}"
+    }
+  ],
+  "filteredModules": 0,
+  "children": []
+}
