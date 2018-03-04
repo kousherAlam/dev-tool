@@ -1,18 +1,9 @@
--var assests = '../../assests/'
--var svg = assests+'svg/'
--var img = assests+'img/'
+extends ../layout/main.pug
 
-include ../mixin/_load_assests.pug
-
-doctype html
-html 
-head 
-	title pug page,
-body 
+block main 
 	+imgsvg('logo')
-	h1 my pug page ...
-	h3 wow it's nice 
-	h3 hi all 
+	h1 What's your name ??? 
+	input(type='text' placeholder='write-someting')
 	p how are you gyes 
 	img.profile-pic(src='../../assests/img/profile.jpg')
 	a(href='about.html') about page
