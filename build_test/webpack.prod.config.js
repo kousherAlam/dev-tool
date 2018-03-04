@@ -18,20 +18,12 @@ fs.readdirSync(jsFilesPath).forEach(function(file){
 
 
 let webpackDevConfig = {
-    mode: 'development',
+    mode: 'production',
     entry: all_js_Entry,
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
         publicPath: '/'
-    },
-    devServer: {
-        contentBase: path.resolve(__dirname, './dist'),
-        watchContentBase: false,
-        publicPath: '/',
-        overlay: true,
-        host: '0.0.0.0',
-        // hotOnly: true
     },
     module: {
         rules: [
@@ -39,7 +31,18 @@ let webpackDevConfig = {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_component)/,
                 use: [
-                     { loader: 'babel-loader'}
+                     { loader: 'babel-loader', options:{
+                        presets: [
+                            ['@babel/preset-env',{
+                                debug: false,
+                                module: false, 
+                                targets: {
+                                    browsers: ['> 1%']
+                                },
+                                useBuiltIns: 'usage'
+                            }]
+                        ]
+                     }}
                 ]
             },
             {
@@ -47,6 +50,7 @@ let webpackDevConfig = {
                 use: [
                     'style-loader',
                     { loader: 'css-loader', options: { importLoaders: 1 } },
+                    // stylelush
                     {loader: 'sass-loader'}
                 ]
             },{
@@ -59,12 +63,12 @@ let webpackDevConfig = {
               ]
             },
             {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.(png|jpg|gif|svg|pdf)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
                         name (file) {
-                            return '[path][name].[ext]';
+                            return '[hash].[ext]'
                         }
                     }  
                 }]
@@ -83,7 +87,7 @@ module.exports = function(){
         webpackDevConfig.plugins.push(
             new HtmlWebpackPlugin({
                 filename: file_name+'.html',
-                hash: false, 
+                hash: true, 
                 template: './src/views/pages/'+file_name+'.pug'
             })
         );

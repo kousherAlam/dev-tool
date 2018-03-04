@@ -1,3 +1,4 @@
 export default function(id){
-    return document.getElementById(id);
+	console.log('selecting files ..');
+    return document.getElementById(id); 
 }
