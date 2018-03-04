@@ -1,11 +1,19 @@
+-var assests = '../../assests/'
+-var svg = assests+'svg/'
+-var img = assests+'img/'
+
+include ../mixin/_load_assests.pug
+
 doctype html
 html 
 head 
 	title pug page,
 body 
+	+imgsvg('logo')
 	h1 my pug page ...
 	h3 wow it's nice 
 	h3 hi all 
 	p how are you gyes 
+	img.profile-pic(src='../../assests/img/profile.jpg')
 	a(href='about.html') about page
 	a(href='contact.html') about page

@@ -7,18 +7,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const pugfiles = './src/views/pages/';
 const jsFilesPath = './src/js/';
-const all_js_Entry = [];
+const all_js_Entry = {};
 
 
 fs.readdirSync(jsFilesPath).forEach(function(file){
-    if(file.match(/.js$/)){
-        all_js_Entry.push(jsFilesPath+file);
+    if(file.match(/.(js|ts)$/)){
+        var file_name = file.replace(/.(ts|js)$/, '');
+        all_js_Entry[file_name] = jsFilesPath+file;
     }
 });
 
 
 let webpackDevConfig = {
     mode: 'development',
+    devtool: 'source-map',
     entry: all_js_Entry,
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -36,18 +38,33 @@ let webpackDevConfig = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(ts|js)$/,
                 exclude: /(node_modules|bower_component)/,
                 use: [
-                     { loader: 'babel-loader'}
+                    { loader: 'babel-loader', options: {
+                        presets: [
+                            ['@babel/preset-env',{
+                                debug: false,
+                                module: false, 
+                                targets: {
+                                    browsers: ['last 3 Chrome major versions']
+                                },
+                            }]
+                        ]
+                    }},
+                    { loader: 'ts-loader' }
                 ]
-            },
-            {
+            },{
                 test: /\.(css|scss|sass)$/,
                 use: [
                     'style-loader',
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    {loader: 'sass-loader'}
+                    { loader: 'css-loader', options: { 
+                        importLoaders: 1,
+                        sourceMap: true
+                    }},
+                    {loader: 'sass-loader', options: {
+                        sourceMap: true,
+                    }}
                 ]
             },{
               test: /\.pug/,
@@ -57,8 +74,7 @@ let webpackDevConfig = {
                     pretty: true,
                 } },
               ]
-            },
-            {
+            },{
                 test: /\.(png|jpg|gif|svg)$/,
                 use: [{
                     loader: 'file-loader',
@@ -90,8 +106,3 @@ module.exports = function(){
     });
     return webpackDevConfig;
 }
-
-/* Need to do some ...
-    * HMR 
-    * Dynamic file compailation and inject into html files ... 
-*/
