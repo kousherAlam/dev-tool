@@ -1,3 +1,17 @@
+# todo 
+	* HTML Reload 
+	* Make a production config 
+	* split js and css (minify & optimize & hidden-sourcemap)
+	* image optimization and generate different resulation images
+	* svg optimization 
+	* clean dist directory & copy | generate all resources
+	* dynamicly change all image srcset
+
+### Here is an Idea
+	* webpack for -> js/html/css files and minification 
+	* gulp for -> images/font/svg inject srcset assest optimization
+
+
 # What will be  included 
     * development workflow
         - Css compailation ( PostCSS > SASS > Support pulgins )
