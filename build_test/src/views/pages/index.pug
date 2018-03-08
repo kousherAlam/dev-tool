@@ -1,10 +1,11 @@
 extends ../layout/main.pug
 
-block main 
-	+imgsvg('logo')
-	h1 What's your name ??? 
-	input(type='text' placeholder='write-someting')
-	p how are you gyes 
-	img.profile-pic(src='../../assests/img/profile.jpg')
-	a(href='about.html') about page
-	a(href='contact.html') about page
+block main
+    +imgsvg('logo')
+    .div
+        h1 cool
+        include ../_parts/_header.pug
+    h1 What's your name ???
+    input(type='text' placeholder='write-someting')
+    p how are you gyes !!   HI
+    img.profile-pic(src='../../assests/img/profile.jpg')

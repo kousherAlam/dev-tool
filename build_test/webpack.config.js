@@ -3,9 +3,11 @@ const fs = require('fs');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
+
+// const HelloWebpackPlugin = require("./plugins/HelloWebpackPlugin");
 
 const pugfiles = './src/views/pages/';
 /*
@@ -48,7 +50,7 @@ let webpackDevConfig = {
                         presets: [
                             ['@babel/preset-env',{
                                 debug: false,
-                                module: false, 
+                                module: false,
                                 targets: {
                                     browsers: ['last 3 Chrome major versions']
                                 },
@@ -64,7 +66,7 @@ let webpackDevConfig = {
                         presets: [
                             ['@babel/preset-env',{
                                 debug: false,
-                                module: false, 
+                                module: false,
                                 targets: {
                                     browsers: ['last 3 Chrome major versions']
                                 },
@@ -77,7 +79,7 @@ let webpackDevConfig = {
                 test: /\.(css|scss|sass)$/,
                 use: [
                     'style-loader',
-                    { loader: 'css-loader', options: { 
+                    { loader: 'css-loader', options: {
                         importLoaders: 1,
                         sourceMap: true
                     }},
@@ -85,15 +87,15 @@ let webpackDevConfig = {
                         sourceMap: true,
                     }}
                 ]
-            },{
+            }, {
               test: /\.pug/,
               use: [
-                { loader: 'html-loader', options: {} },
+               { loader: 'html-loader', options: {} },
                 { loader: 'pug-html-loader', options: {
                     pretty: true,
                 } },
               ]
-            },{
+            },  {
                 test: /\.(png|jpg|gif|svg)$/,
                 use: [{
                     loader: 'file-loader',
@@ -101,12 +103,13 @@ let webpackDevConfig = {
                         name (file) {
                             return '[path][name].[ext]';
                         }
-                    }  
+                    }
                 }]
             }
         ]
     },
     plugins: [
+        // new HelloWebpackPlugin({options: true}),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new BrowserSyncPlugin({
@@ -115,7 +118,8 @@ let webpackDevConfig = {
                 proxy: 'http://localhost:3100/',
                 files: [{
                     match: [
-                        'dist/*.html'
+                        'dist/*.html',
+                        'src/views/**/*.pug',
                     ],
                     fn: function(event, file) {
                         if (event === "change") {
@@ -126,9 +130,6 @@ let webpackDevConfig = {
                 }]
             },{
                 reload: false,
-                // server: {
-                //     baseDir: ['dist']
-                // }
             }
         ),
     ]
@@ -140,12 +141,15 @@ module.exports = function(){
         webpackDevConfig.plugins.push(
             new HtmlWebpackPlugin({
                 filename: file_name+'.html',
-                hash: false, 
-                // alwaysWriteToDisk: true,
+                cache: true,
+                hash: false,
                 template: './src/views/pages/'+file_name+'.pug'
             })
         );
     });
-    // webpackDevConfig.plugins.push(new HtmlWebpackHarddiskPlugin());
+    /*
+    webpackDevConfig.plugins.push( new HtmlWebpackHarddiskPlugin({
+        outputPath: path.resolve(__dirname, 'dist')
+    }) ); */
     return webpackDevConfig;
 }
