@@ -64,16 +64,8 @@ let webpackDevConfig = {
             },{
                 test: /\.(css|scss|sass)$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    {loader: 'css-loader', options: {
-                        url: false,
-                        minimize: true,
-                        sourceMap: true
-                    } },
-                    {loader: 'sass-loader', options: {
-                        sourceMap: true
-                    }},
-                })
+                    use: [ 'css-loader', 'sass-loader' ],
+                }),
             }, {
               test: /\.pug/,
               use: [

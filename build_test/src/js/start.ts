@@ -1,5 +1,1 @@
-import '../css/main.sass';
-
-
-// add all polyfill 
-// import "@babel/polyfill";
+console.log("it's start js");

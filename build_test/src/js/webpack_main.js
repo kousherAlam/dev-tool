@@ -1,9 +1,9 @@
-// add main page files 
+// add main page files
 import './start.ts';
 import './vendor.ts';
 import './app.ts';
 
-// add css files 
+// add css files
 import '../css/main.sass';
 
 
@@ -25,7 +25,7 @@ if (module.hot) {
             setTimeout(() => {
             	if(link.parentNode){
             		link.parentNode.removeChild(link);
-            	}                
+            	}
             }, DEAD_CSS_TIMEOUT);
         });
     })

@@ -46,33 +46,13 @@ let webpackDevConfig = {
                 test: /\.(js)$/,
                 exclude: /(node_modules|bower_component)/,
                 use: [
-                    { loader: 'babel-loader', options: {
-                        presets: [
-                            ['@babel/preset-env',{
-                                debug: false,
-                                module: false,
-                                targets: {
-                                    browsers: ['last 3 Chrome major versions']
-                                },
-                            }]
-                        ]
-                    }},
+                    { loader: 'babel-loader'},
                 ]
             },{
                 test: /\.(ts)$/,
                 exclude: /(node_modules|bower_component)/,
                 use: [
-                    { loader: 'babel-loader', options: {
-                        presets: [
-                            ['@babel/preset-env',{
-                                debug: false,
-                                module: false,
-                                targets: {
-                                    browsers: ['last 3 Chrome major versions']
-                                },
-                            }]
-                        ]
-                    }},
+                    { loader: 'babel-loader',},
                     { loader: 'ts-loader' }
                 ]
             },{

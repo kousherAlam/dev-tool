@@ -4,13 +4,12 @@ const config = require("./cli.config");
 
 /* ====================================
     [TODO] * Need to add chalk ...
- ======================================= */
+ =======================================
 browserSync({
     server: config.dist.export_folder,
     port: config.share.share_port,
 });
-
-
+*/
 var tunnel = localtunnel(config.share.share_port, {
         subdomain: config.share.name
     }, function(err, tunnel) {
