@@ -3,8 +3,8 @@ const fs = require('fs');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 const config = require("./cli.config");
 
@@ -24,21 +24,13 @@ const pugfiles = './src/views/pages/';
 
 
 let webpackDevConfig = {
-    mode: 'development',
-    devtool: 'source-map',
+    mode: 'production',
+    devtool: 'hidden-source-map',
     entry: './src/js/webpack_main.js',
     output: {
         path: path.resolve(__dirname, config.dist.export_folder ),
         filename: '[name].bundle.js',
         publicPath: '/'
-    },
-    devServer: {
-        hot: true,
-        contentBase: path.resolve(__dirname, './dist'),
-        watchContentBase: true,
-        publicPath: '/',
-        overlay: true,
-        port: 3100,
     },
     module: {
         rules: [
@@ -51,9 +43,6 @@ let webpackDevConfig = {
                             ['@babel/preset-env',{
                                 debug: false,
                                 module: false,
-                                targets: {
-                                    browsers: ['last 3 Chrome major versions']
-                                },
                             }]
                         ]
                     }},
@@ -67,9 +56,6 @@ let webpackDevConfig = {
                             ['@babel/preset-env',{
                                 debug: false,
                                 module: false,
-                                targets: {
-                                    browsers: ['last 3 Chrome major versions']
-                                },
                             }]
                         ]
                     }},
@@ -77,16 +63,17 @@ let webpackDevConfig = {
                 ]
             },{
                 test: /\.(css|scss|sass)$/,
-                use: [
-                    'style-loader',
-                    { loader: 'css-loader', options: {
-                        importLoaders: 1,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    {loader: 'css-loader', options: {
+                        url: false,
+                        minimize: true,
+                        sourceMap: true
+                    } },
+                    {loader: 'sass-loader', options: {
                         sourceMap: true
                     }},
-                    {loader: 'sass-loader', options: {
-                        sourceMap: true,
-                    }}
-                ]
+                })
             }, {
               test: /\.pug/,
               use: [
@@ -109,29 +96,7 @@ let webpackDevConfig = {
         ]
     },
     plugins: [
-        // new HelloWebpackPlugin({options: true}),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new BrowserSyncPlugin({
-                host: 'localhost',
-                port: 3000,
-                proxy: 'http://localhost:3100/',
-                files: [{
-                    match: [
-                        'dist/*.html',
-                        'src/views/**/*.pug',
-                    ],
-                    fn: function(event, file) {
-                        if (event === "change") {
-                            const bs = require('browser-sync').get('bs-webpack-plugin');
-                            bs.reload();
-                        }
-                    }
-                }]
-            },{
-                reload: false,
-            }
-        ),
+        new ExtractTextPlugin('style.css')
     ]
 }
 
@@ -141,15 +106,11 @@ module.exports = function(){
         webpackDevConfig.plugins.push(
             new HtmlWebpackPlugin({
                 filename: file_name+'.html',
-                cache: true,
-                hash: false,
+                cache: false,
+                hash: true,
                 template: './src/views/pages/'+file_name+'.pug'
             })
         );
     });
-    /*
-    webpackDevConfig.plugins.push( new HtmlWebpackHarddiskPlugin({
-        outputPath: path.resolve(__dirname, 'dist')
-    }) ); */
     return webpackDevConfig;
 }
