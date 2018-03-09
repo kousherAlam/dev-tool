@@ -3,7 +3,6 @@ const fs = require('fs');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 
@@ -127,9 +126,5 @@ module.exports = function(){
             })
         );
     });
-    /*
-    webpackDevConfig.plugins.push( new HtmlWebpackHarddiskPlugin({
-        outputPath: path.resolve(__dirname, 'dist')
-    }) ); */
     return webpackDevConfig;
 }

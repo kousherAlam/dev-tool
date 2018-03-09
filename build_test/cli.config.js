@@ -8,6 +8,6 @@ module.exports = {
         sync_proxy_port: 3001,
     },
     dist: {
-        export_folder: '/dist'
+        export_folder: "dist",
     }
 }

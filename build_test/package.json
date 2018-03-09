@@ -4,10 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "webpack --mode production",
     "start": "nodemon -w webpack.config.js -x webpack-dev-server",
-    "dev": "nodemon -w webpack.config.js -x webpack-dev-server",
-    "prod": "webpack --config webpack.prod.config.js",
+    "deploy": "webpack --config webpack.prod.config.js",
     "share": "node ./share.js",
     "zip": "node ./zip.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,10 +24,9 @@
     "browser-sync-webpack-plugin": "^2.0.1",
     "css-loader": "^0.28.10",
     "cssnano": "^3.10.0",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
-    "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^3.0.6",
     "localtunnel": "^1.8.3",
     "node-sass": "^4.7.2",

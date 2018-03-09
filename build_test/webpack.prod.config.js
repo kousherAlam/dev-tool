@@ -7,12 +7,14 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 const config = require("./cli.config");
+const deploy_path = path.resolve(__dirname, config.dist.export_folder );
+
 
 /* =========================================
     [TODO]
-        * extractText -> extract css and js
+        * extractText -> extract css and js [done]
         * postCss for fallback & minify css
-        * js minification and polyfill
+        * js minification and polyfill [done :: pollyfill more.]
         * make a dependency graph
         * Image min and image resizer
         * svg optimize
@@ -25,12 +27,11 @@ const pugfiles = './src/views/pages/';
 
 let webpackDevConfig = {
     mode: 'production',
-    devtool: 'hidden-source-map',
+    devtool: 'source-map',
     entry: './src/js/webpack_main.js',
     output: {
-        path: path.resolve(__dirname, config.dist.export_folder ),
-        filename: '[name].bundle.js',
-        publicPath: '/'
+        path: path.resolve(__dirname, deploy_path ),
+        filename: '[name].bundle.js'
     },
     module: {
         rules: [
@@ -88,7 +89,7 @@ let webpackDevConfig = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin("style.css"),
     ]
 }
 
