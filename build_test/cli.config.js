@@ -1,6 +1,6 @@
 module.exports = {
     project:{
-        name: 'font-end',
+        name: 'front_end',
         surge: {
             cname: '',
         },
@@ -9,7 +9,7 @@ module.exports = {
         }
     },
     share: {
-        name: 'kousher',
+        name: 'front_end',
         port: 4004
     },
     file_loader: /\.(gif|svg|pdf|doc?x)$/,

@@ -12,13 +12,12 @@ const deploy_path = path.resolve(__dirname, config.dist.export_folder );
 
 /* =========================================
     [TODO]
-        * Image optimization and resize
-            * optimize and resize -> [done]
-            * change the file generate path in dist/img folder
-        * svg optimize
+        * resize image location
+        * code spliting ...
         * PWA And Offline support
+            - pwa manifast
+            - offline-plugin (offline-pwa[webpack-example])
         * make a dependency graph
-        * Just show error or success log in one line
  =========================================== */
 
 const pugfiles = './src/views/pages/';
@@ -79,7 +78,7 @@ let webpackDevConfig = {
                 } },
               ]
             },  {
-                test: /\.(gif|svg|pdf|doc?x)$/,
+                test: /\.(pdf|doc?x)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
@@ -89,27 +88,47 @@ let webpackDevConfig = {
                     }
                 }]
             },  {
-                test: /\.(jpe?g|png)$/,
+                test: /\.(jpe?g|png|webp)$/,
                 use: [
                         { loader: 'responsive-loader', options: {
                             adapter: require('responsive-loader/sharp'),
                             name: '[name]-[width].[ext]',
-                            context: deploy_path+"/img",
                             size: 1000,
                             min: 500,
                             max: 3000,
                             steps: 6,
-                            quality: 80,
+                            quality: 50,
                             placeholder: true,
                             placeholderSize: 50,
                         }}
                     ]
+            }, {
+                test: /\.(gif|svg|webp)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name (file) {
+                                return 'img/[name].[ext]';
+                            }
+                        }
+                    },
+                    { loader: 'image-webpack-loader',options: {
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    },
+                ],
             }
         ]
     },
     plugins: [
         new CleanWebpackPlugin( [config.dist.export_folder] ),
-        new ExtractTextPlugin("style.css"),
+        new ExtractTextPlugin("css/style.css"),
     ]
 }
 
