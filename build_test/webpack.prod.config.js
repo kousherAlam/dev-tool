@@ -4,7 +4,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require("./cli.config");
 const deploy_path = path.resolve(__dirname, config.dist.export_folder );
@@ -12,14 +12,13 @@ const deploy_path = path.resolve(__dirname, config.dist.export_folder );
 
 /* =========================================
     [TODO]
-        * extractText -> extract css and js [done]
-        * postCss for fallback & minify css
-        * js minification and polyfill [done :: pollyfill more.]
-        * make a dependency graph
-        * Image min and image resizer
+        * Image optimization and resize
+            * optimize and resize -> [done]
+            * change the file generate path in dist/img folder
         * svg optimize
-        * Offline support
-        * chalk for coloring ..
+        * PWA And Offline support
+        * make a dependency graph
+        * Just show error or success log in one line
  =========================================== */
 
 const pugfiles = './src/views/pages/';
@@ -27,7 +26,7 @@ const pugfiles = './src/views/pages/';
 
 let webpackDevConfig = {
     mode: 'production',
-    devtool: 'source-map',
+    devtool: 'hidden-source-map',
     entry: './src/js/webpack_main.js',
     output: {
         path: path.resolve(__dirname, deploy_path ),
@@ -65,7 +64,11 @@ let webpackDevConfig = {
             },{
                 test: /\.(css|scss|sass)$/,
                 use: ExtractTextPlugin.extract({
-                    use: [ 'css-loader', 'sass-loader' ],
+                    use: [
+                            'css-loader',
+                            'postcss-loader',
+                            'sass-loader'
+                        ],
                 }),
             }, {
               test: /\.pug/,
@@ -76,19 +79,36 @@ let webpackDevConfig = {
                 } },
               ]
             },  {
-                test: /\.(png|jpg|gif|svg)$/,
+                test: /\.(gif|svg|pdf|doc?x)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
                         name (file) {
-                            return '[path][name].[ext]';
+                            return 'img/[name].[ext]';
                         }
                     }
                 }]
+            },  {
+                test: /\.(jpe?g|png)$/,
+                use: [
+                        { loader: 'responsive-loader', options: {
+                            adapter: require('responsive-loader/sharp'),
+                            name: '[name]-[width].[ext]',
+                            context: deploy_path+"/img",
+                            size: 1000,
+                            min: 500,
+                            max: 3000,
+                            steps: 6,
+                            quality: 80,
+                            placeholder: true,
+                            placeholderSize: 50,
+                        }}
+                    ]
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin( [config.dist.export_folder] ),
         new ExtractTextPlugin("style.css"),
     ]
 }
