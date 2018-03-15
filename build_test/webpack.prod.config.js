@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
+
 
 const config = require("./cli.config");
 const deploy_path = path.resolve(__dirname, config.dist.export_folder );
@@ -12,11 +14,11 @@ const deploy_path = path.resolve(__dirname, config.dist.export_folder );
 
 /* =========================================
     [TODO]
-        * resize image location
-        * code spliting ...
         * PWA And Offline support
             - pwa manifast
             - offline-plugin (offline-pwa[webpack-example])
+        * code spliting ...
+        * Lazy loading ...
         * make a dependency graph
  =========================================== */
 
@@ -29,7 +31,7 @@ let webpackDevConfig = {
     entry: './src/js/webpack_main.js',
     output: {
         path: path.resolve(__dirname, deploy_path ),
-        filename: '[name].bundle.js'
+        filename: 'js/[name].bundle.js'
     },
     module: {
         rules: [
@@ -83,7 +85,7 @@ let webpackDevConfig = {
                     loader: 'file-loader',
                     options: {
                         name (file) {
-                            return 'img/[name].[ext]';
+                            return 'files/[name].[ext]';
                         }
                     }
                 }]
@@ -92,7 +94,7 @@ let webpackDevConfig = {
                 use: [
                         { loader: 'responsive-loader', options: {
                             adapter: require('responsive-loader/sharp'),
-                            name: '[name]-[width].[ext]',
+                            name: 'images/[name]-[width].[ext]',
                             size: 1000,
                             min: 500,
                             max: 3000,
@@ -109,7 +111,7 @@ let webpackDevConfig = {
                         loader: 'file-loader',
                         options: {
                             name (file) {
-                                return 'img/[name].[ext]';
+                                return 'images/[name].[ext]';
                             }
                         }
                     },
@@ -129,6 +131,11 @@ let webpackDevConfig = {
     plugins: [
         new CleanWebpackPlugin( [config.dist.export_folder] ),
         new ExtractTextPlugin("css/style.css"),
+        new OfflinePlugin({
+            ServiceWorker: {
+                minify: false
+            }
+        }),
     ]
 }
 

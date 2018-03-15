@@ -9,18 +9,8 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 // const HelloWebpackPlugin = require("./plugins/HelloWebpackPlugin");
 
 const pugfiles = './src/views/pages/';
-/*
-const jsFilesPath = './src/js/';
-const all_js_Entry = {};
 
 
-fs.readdirSync(jsFilesPath).forEach(function(file){
-    if(file.match(/.(js|ts)$/)){
-        var file_name = file.replace(/.(ts|js)$/, '');
-        all_js_Entry[file_name] = jsFilesPath+file;
-    }
-});
-*/
 
 let webpackDevConfig = {
     mode: 'development',

@@ -6,9 +6,16 @@ import './app.ts';
 // add css files
 import '../css/main.sass';
 
+// offline runtime puglin
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
 
 if(module.hot){
+    // module.hot only enable when developoing
 	module.hot.accept();
+}else{
+    // When our site on production.
+    OfflinePluginRuntime.install();
 }
 /*
 if (module.hot) {

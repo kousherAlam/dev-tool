@@ -1,1 +1,1 @@
-console.log("hi there");
+import { Person } from './module/Person'

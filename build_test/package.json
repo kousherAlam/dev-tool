@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon -w webpack.config.js -x webpack-dev-server",
-    "deploy": "webpack --config webpack.prod.config.js",
-    "color_scheme": "",
+    "deploy": "webpack --config webpack.prod.config.js && webpack --config minify_sw.js",
+    "color_scheme": "node ./color_scheme.js",
     "share": "node ./share.js",
     "zip": "node ./zip.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,6 +35,7 @@
     "localtunnel": "^1.8.3",
     "node-sass": "^4.7.2",
     "nodemon": "^1.17.1",
+    "offline-plugin": "^4.9.0",
     "postcss": "^6.0.19",
     "postcss-cssnext": "^3.1.0",
     "postcss-image-set": "^1.0.0",

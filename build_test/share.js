@@ -14,15 +14,15 @@ const config = require("./cli.config");
 if (fs.existsSync('./'+config.dist.export_folder)) {
     browserSync({
         server: './'+config.dist.export_folder,
-        port: config.share.port,
+        port: config.project.port,
     });
-    var tunnel = localtunnel( config.share.port , {
-            subdomain: config.share.name
+    var tunnel = localtunnel( config.project.port , {
+            subdomain: config.project.name
         }, function(err, tunnel) {
             if (err) {
-                console.log("ERROR ON TUNNEL :'( ")
+                console.log("ERROR ON TUNNEL :'( ", err);
             }else{
-                console.log("Tunnel Running on: "+tunnel.url)
+                console.log("Tunnel Running on: "+tunnel.url);
             }
         }
     );

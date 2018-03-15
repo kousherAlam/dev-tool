@@ -1,1 +1,1 @@
-console.log("it's start js");
+import '../css/main.sass';

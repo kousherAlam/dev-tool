@@ -1,6 +1,7 @@
 module.exports = {
     project:{
-        name: 'front_end',
+        name: 'frontend',
+        port: 4004,
         surge: {
             cname: '',
         },
@@ -8,11 +9,7 @@ module.exports = {
             repo_url: '',
         }
     },
-    share: {
-        name: 'front_end',
-        port: 4004
-    },
-    file_loader: /\.(gif|svg|pdf|doc?x)$/,
+    file_loader: /\.(pdf|doc?x)$/,
     dev: {
         port: 3000,
         sync_proxy_port: 3001,

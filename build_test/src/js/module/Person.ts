@@ -4,6 +4,8 @@ export class Person{
     constructor(){
     	console.log(new Sellsman );
         console.log("i'm form construct");
+        console.log("i'm form construct");
+        console.log("i'm form construct");
     }
     sayName(){
         console.log(`Hi my name is kousher alam pranto`);
