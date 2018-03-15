@@ -5,14 +5,14 @@ const webpack = require('webpack');
 
 
 const config = require("./cli.config");
-const deploy_path = path.resolve(__dirname, config.dist.export_folder );
+const deploy_path = path.resolve(__dirname, '../'+config.dist.export_folder );
 
 
 let webpackDevConfig = {
     mode: 'production',
     entry: {sw: './dist/sw.js'},
     output: {
-        path: path.resolve(__dirname, deploy_path ),
+        path: deploy_path,
         filename: '[name].js'
     },
     module: {},

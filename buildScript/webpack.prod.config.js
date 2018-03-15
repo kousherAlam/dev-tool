@@ -6,20 +6,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const TidyHtmlWebpackPlugin = require('tidy-html-webpack-plugin');
 
 
 const config = require("./cli.config");
-const deploy_path = path.resolve(__dirname, config.dist.export_folder );
+const deploy_path = path.resolve(__dirname, '../'+config.dist.export_folder );
 
 
 /* =========================================
     [TODO]
-        * PWA And Offline support
-            - pwa manifast
-            - offline-plugin (offline-pwa[webpack-example])
+        * add html beautify .. 
         * code spliting ...
         * Lazy loading ...
         * make a dependency graph
+        * ZIP
+        * Surge 
+        * Github Pages 
+        * Create new App .. 
  =========================================== */
 
 const pugfiles = './src/views/pages/';
@@ -30,7 +34,7 @@ let webpackDevConfig = {
     devtool: 'hidden-source-map',
     entry: './src/js/webpack_main.js',
     output: {
-        path: path.resolve(__dirname, deploy_path ),
+        path: deploy_path,
         filename: 'js/[name].bundle.js'
     },
     module: {
@@ -151,5 +155,50 @@ module.exports = function(){
             })
         );
     });
+
+    webpackDevConfig.plugins.push(new WebpackPwaManifest({
+            name: config.pwa.name,
+            short_name: config.pwa.short_name,
+            ios: {
+                'apple-mobile-web-app-title': config.pwa.apple_title,
+                'apple-mobile-web-app-status-bar-style': config.pwa.apple_bar_color
+            },
+            inject: true,
+            fingerprints: true,
+            description: config.pwa.description,
+            background_color: config.pwa.background_color,
+            icons: [
+              {
+                src: path.resolve(config.pwa.iso_icon),
+                sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+                destination: path.join('icons', 'ios'),
+                ios: true,
+              },
+              {
+                src: path.resolve(config.pwa.iso_startup),
+                size: '1024x1024', // you can also use the specifications pattern
+                destination: path.join('icons', 'iosStartup'),
+                ios: 'startup'
+              },{
+                  src: path.resolve(config.pwa.android),
+                  sizes: [36, 48, 72, 96, 144, 192, 512],
+                  destination: path.join('icons', 'android')
+                }
+            ]
+        }));
+
+    webpackDevConfig.plugins.push(
+        new TidyHtmlWebpackPlugin({
+          tidy: {
+            doctype: 'html5',
+            hideComments: false,
+            indent: true,
+            sortAttributes: 'alpha',
+            tabSize: 4,
+            wrap: 0
+          }
+        })
+    );
+
     return webpackDevConfig;
 }

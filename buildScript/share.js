@@ -7,7 +7,6 @@ const config = require("./cli.config");
 
 /* ====================================
     [TODO]  * Need to add chalk ...
-            * Need to check dist folder existance ...
  =======================================
  */
 
